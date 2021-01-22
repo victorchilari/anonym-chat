@@ -5,7 +5,7 @@ import App from './App';
 import firebase from 'firebase';
 import 'firebase/firebase';
 import 'firebase/auth';
-import { firebaseKEYS } from './private';
+import { firebaseKEYS } from './utils/private';
 
 firebase.initializeApp(firebaseKEYS);
 
