@@ -1,19 +1,12 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import {
-	Container,
-	Grid,
-	List,
-	ListItem,
-	ListItemText,
-	makeStyles,
-	Typography
-} from '@material-ui/core';
+import { makeStyles, Container, Grid, List } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Context } from '..';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from 'firebase';
 import Input from '../components/Input';
+import Message from '../components/Message';
 
 const useStyles = makeStyles({
 	table: {
@@ -32,29 +25,6 @@ const useStyles = makeStyles({
 	messageArea: {
 		height: '50px',
 		overflowY: 'none'
-	},
-	inline: {
-		display: 'inline',
-		maxWidth: '600px'
-		// flexWrap: 'wrap-reverse'
-		// flexDirection: 'column-reverse'
-	},
-	notmyMessage: {
-		maxWidth: '600px',
-		wordWrap: 'break-word',
-		'& *': {
-			display: 'flex',
-			backgroundColor: 'red'
-		}
-	},
-	myMessage: {
-		maxWidth: '600px',
-		wordWrap: 'break-word',
-		'& *': {
-			display: 'flex',
-			flexDirection: 'row-reverse',
-			backgroundColor: 'green'
-		}
 	}
 });
 
@@ -82,8 +52,7 @@ export const Chat = () => {
 					createDate: firebase.firestore.FieldValue.serverTimestamp()
 				});
 				setInputValue('');
-			}
-			catch (error) {
+			} catch (error) {
 				console.log(error);
 			}
 		}
@@ -93,8 +62,6 @@ export const Chat = () => {
 		const chat = document.getElementById('chatsMessages');
 		if (chat) chat.scrollTop = 9999999;
 	}, [messages]);
-
-	
 
 	if (loading) return <CircularProgress disableShrink />;
 	return (
@@ -113,43 +80,16 @@ export const Chat = () => {
 					<List className={classes.messageArea}>
 						{messages[0] &&
 							messages.map(message => (
-								<ListItem key={message.createDate}>
-									<Grid
-										item
-										xs={12}
-										align={user.uid === message.uid ? 'right' : 'left'}
-									>
-										<ListItemText
-											className={
-												user.uid === message.uid
-													? classes.myMessage
-													: classes.notmyMessage
-											}
-											primary={
-												<>
-													<Typography
-														multiline
-														component="span"
-														variant="body2"
-														className={classes.inline}
-														color="textPrimary"
-													>
-														{message.createDate &&
-															new Date(message.createDate.seconds*1000+message.createDate.nanoseconds/1000000)
-																.toLocaleString()
-																.substring(12, 17)}
-													</Typography>
-													{message.text}
-												</>
-											}
-										></ListItemText>
-									</Grid>
-								</ListItem>
+								<Message myId={user.uid} message={message} />
 							))}
 					</List>
 				</div>
 			</Grid>
-			<Input value={inputValue} setValue={setInputValue} sendMessage={sendMessage}/>
+			<Input
+				value={inputValue}
+				setValue={setInputValue}
+				sendMessage={sendMessage}
+			/>
 		</Container>
 	);
 };
