@@ -1,12 +1,12 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { makeStyles, Container, Grid, List } from '@material-ui/core';
+import { makeStyles, Container } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Context } from '..';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from 'firebase';
 import Input from '../components/Input';
-import Message from '../components/Message';
+import Messages from '../components/Messages';
 
 const useStyles = makeStyles({
 	table: {
@@ -21,10 +21,6 @@ const useStyles = makeStyles({
 	},
 	borderRight500: {
 		borderRight: '1px solid #e0e0e0'
-	},
-	messageArea: {
-		height: '50px',
-		overflowY: 'none'
 	}
 });
 
@@ -66,25 +62,7 @@ export const Chat = () => {
 	if (loading) return <CircularProgress disableShrink />;
 	return (
 		<Container>
-			<Grid container justify={'center'} style={{ marginTop: 16 }}>
-				<div
-					id="chatsMessages"
-					style={{
-						width: '100%',
-						height: '60vh',
-						border: '1px solid gray',
-						overflowY: 'auto',
-						scrollTop: 999999
-					}}
-				>
-					<List className={classes.messageArea}>
-						{messages[0] &&
-							messages.map(message => (
-								<Message myId={user.uid} message={message} />
-							))}
-					</List>
-				</div>
-			</Grid>
+			<Messages uid={user.uid} messages={messages} />
 			<Input
 				value={inputValue}
 				setValue={setInputValue}
