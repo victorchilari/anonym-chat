@@ -2,14 +2,11 @@ import React, { useContext } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import { NavLink } from 'react-router-dom';
-// import MenuIcon from '@material-ui/icons/Menu';
-import { LOGIN_ROUTE } from '../utils/consts';
 import { Context } from '../index';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Login } from './Login';
 
 const Navbar = () => {
 	const { auth } = useContext(Context);
@@ -25,7 +22,7 @@ const Navbar = () => {
 				</IconButton> */}
 				<Grid container justify="space-between">
 					<Typography variant="h6" color="inherit">
-						Photos
+						Anonym Chat
 					</Typography>
 					{user ? (
 						<Button
@@ -36,11 +33,7 @@ const Navbar = () => {
 							Logout
 						</Button>
 					) : (
-						<NavLink to={LOGIN_ROUTE}>
-							<Button variant="outlined" color="primary">
-								Login
-							</Button>
-						</NavLink>
+						<Login auth={auth} />
 					)}
 				</Grid>
 			</Toolbar>
@@ -49,3 +42,17 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+// {
+// 	user ? (
+// 		<Button variant="outlined" color="secondary" onClick={() => auth.signOut()}>
+// 			Logout
+// 		</Button>
+// 	) : (
+// 		<NavLink to={LOGIN_ROUTE}>
+// 			<Button variant="outlined" color="primary">
+// 				Login
+// 			</Button>
+// 		</NavLink>
+// 	);
+// }

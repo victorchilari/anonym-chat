@@ -19,7 +19,7 @@ const AppRouter = () => {
 	return (
 		<Switch>
 			{routes}
-			<Redirect to="/chat" />
+			<Redirect to="/" />
 		</Switch>
 	);
 };

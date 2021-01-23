@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
-import { Context } from '../index';
 import firebase from 'firebase';
 
-export const Login = () => {
-	const { auth } = useContext(Context);
+export const Login = props => {
+	const auth = props.auth;
 
 	const login = async () => {
 		const provider = new firebase.auth.GoogleAuthProvider();
