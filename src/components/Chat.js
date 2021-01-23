@@ -1,12 +1,66 @@
-import React, { useCallback, useContext, useState } from 'react';
-import { Button, Container, Grid, TextField } from '@material-ui/core';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
+import {
+	Button,
+	Container,
+	Grid,
+	List,
+	ListItem,
+	ListItemText,
+	makeStyles,
+	TextField,
+	Typography
+} from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Context } from '..';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from 'firebase';
 
+const useStyles = makeStyles({
+	table: {
+		minWidth: 650
+	},
+	chatSection: {
+		width: '100%',
+		height: '80vh'
+	},
+	headBG: {
+		backgroundColor: '#e0e0e0'
+	},
+	borderRight500: {
+		borderRight: '1px solid #e0e0e0'
+	},
+	messageArea: {
+		height: '50px',
+		overflowY: 'none'
+	},
+	inline: {
+		display: 'inline',
+		maxWidth: '600px'
+		// flexWrap: 'wrap-reverse'
+		// flexDirection: 'column-reverse'
+	},
+	notmyMessage: {
+		maxWidth: '600px',
+		wordWrap: 'break-word',
+		'& *': {
+			display: 'flex',
+			backgroundColor: 'red'
+		}
+	},
+	myMessage: {
+		maxWidth: '600px',
+		wordWrap: 'break-word',
+		'& *': {
+			display: 'flex',
+			flexDirection: 'row-reverse',
+			backgroundColor: 'green'
+		}
+	}
+});
+
 export const Chat = () => {
+	const classes = useStyles();
 	const { auth, firestore } = useContext(Context);
 	const [user] = useAuthState(auth);
 	const [value, setValue] = useState('');
@@ -15,8 +69,9 @@ export const Chat = () => {
 	);
 
 	const sendMessage = useCallback(async () => {
-		if (value.length > 0) {
-			console.log(value);
+		const reg = new RegExp('\\S');
+		const isJustSpace = !reg.test(value);
+		if (!isJustSpace && value.length > 0) {
 			firestore.collection('messages').add({
 				uid: user.uid,
 				displayName: user.displayName,
@@ -27,10 +82,18 @@ export const Chat = () => {
 			setValue('');
 		}
 	}, [value]);
-	console.log('rerender');
+
+	useEffect(() => {
+		const chat = document.getElementById('chatsMessages');
+		if (chat) chat.scrollTop = 9999999;
+		console.log(messages);
+	}, [messages]);
+
+	const map = {}; // You could also use an array
 
 	const keyPress = e => {
-		if (e.keyCode === 13) {
+		map[e.keyCode] = e.type == 'keydown';
+		if (map[17] && map[13]) {
 			sendMessage();
 		}
 	};
@@ -40,28 +103,52 @@ export const Chat = () => {
 		<Container>
 			<Grid container justify={'center'} style={{ marginTop: 16 }}>
 				<div
+					id="chatsMessages"
 					style={{
 						width: '100%',
 						height: '60vh',
 						border: '1px solid gray',
-						overflowY: 'auto'
+						overflowY: 'auto',
+						scrollTop: 999999
 					}}
 				>
-					{messages.map(message => (
-						<div
-							style={{
-								border:
-									user.uid === message.uid
-										? '2px solid green'
-										: '2px solid red',
-								marginLeft: user.uid === message.uid ? 'auto' : '10px',
-								width: 'fit-content',
-								padding: 5
-							}}
-						>
-							<Grid container>{message.text}</Grid>
-						</div>
-					))}
+					<List className={classes.messageArea}>
+						{messages[0].createDate.seconds &&
+							messages.map(message => (
+								<ListItem key={message.createDate}>
+									<Grid
+										item
+										xs={12}
+										align={user.uid === message.uid ? 'right' : 'left'}
+									>
+										<ListItemText
+											className={
+												user.uid === message.uid
+													? classes.myMessage
+													: classes.notmyMessage
+											}
+											primary={
+												<>
+													<Typography
+														multiline
+														component="span"
+														variant="body2"
+														className={classes.inline}
+														color="textPrimary"
+													>
+														{message.createDate &&
+															new Date(message.createDate.seconds)
+																.toLocaleString()
+																.substring(12, 17)}
+													</Typography>
+													{message.text}
+												</>
+											}
+										></ListItemText>
+									</Grid>
+								</ListItem>
+							))}
+					</List>
 				</div>
 			</Grid>
 			<Grid
@@ -72,8 +159,9 @@ export const Chat = () => {
 			>
 				<TextField
 					fullWidth
+					onKeyDown={keyPress}
 					onKeyUp={keyPress}
-					rowsMax={2}
+					multiline
 					variant="outlined"
 					style={{ width: '90%' }}
 					value={value}

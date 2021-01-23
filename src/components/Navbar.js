@@ -14,12 +14,6 @@ const Navbar = () => {
 	return (
 		<AppBar color={'default'} position="static">
 			<Toolbar>
-				{/* <IconButton edge="start" color="inherit" aria-label="menu">
-					<img
-						width="20px"
-						src="https://www.flaticon.com/svg/vstatic/svg/1828/1828859.svg?token=exp=1611328464~hmac=63e10be00d4ca211f97f06e3fb2c32dc"
-					/>
-				</IconButton> */}
 				<Grid container justify="space-between">
 					<Typography variant="h6" color="inherit">
 						Anonym Chat
