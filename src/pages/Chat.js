@@ -1,13 +1,11 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import {
-	Button,
 	Container,
 	Grid,
 	List,
 	ListItem,
 	ListItemText,
 	makeStyles,
-	TextField,
 	Typography
 } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -15,6 +13,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Context } from '..';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from 'firebase';
+import Input from '../components/Input';
 
 const useStyles = makeStyles({
 	table: {
@@ -63,7 +62,7 @@ export const Chat = () => {
 	const classes = useStyles();
 	const { auth, firestore } = useContext(Context);
 	const [user] = useAuthState(auth);
-	const [value, setValue] = useState('');
+	const [inputValue, setInputValue] = useState('');
 
 	const seconds = new Date().getSeconds();
 	const [messages, loading] = useCollectionData(
@@ -72,36 +71,30 @@ export const Chat = () => {
 
 	const sendMessage = useCallback(async () => {
 		const reg = new RegExp('\\S');
-		const isJustSpace = !reg.test(value);
-		if (!isJustSpace && value.length > 0) {
+		const isJustSpace = !reg.test(inputValue);
+		if (!isJustSpace && inputValue.length > 0) {
 			try {
 				firestore.collection('messages').add({
 					uid: user.uid,
 					displayName: user.displayName,
 					photoURL: user.photoURL,
-					text: value,
+					text: inputValue,
 					createDate: firebase.firestore.FieldValue.serverTimestamp()
 				});
-				setValue('');
+				setInputValue('');
 			}
 			catch (error) {
 				console.log(error);
 			}
 		}
-	}, [value]);
+	}, [inputValue]);
 
 	useEffect(() => {
 		const chat = document.getElementById('chatsMessages');
 		if (chat) chat.scrollTop = 9999999;
 	}, [messages]);
 
-	const keyMap = {};
-	const keyPress = e => {
-		keyMap[e.keyCode] = e.type == 'keydown';
-		if (keyMap[17] && keyMap[13]) {
-			sendMessage();
-		}
-	};
+	
 
 	if (loading) return <CircularProgress disableShrink />;
 	return (
@@ -156,31 +149,7 @@ export const Chat = () => {
 					</List>
 				</div>
 			</Grid>
-			<Grid
-				container
-				// direction="column"
-				// alignItems="flex-end"
-				// style={{ width: '80%' }}
-			>
-				<TextField
-					fullWidth
-					onKeyDown={keyPress}
-					onKeyUp={keyPress}
-					multiline
-					variant="outlined"
-					style={{ width: '90%' }}
-					value={value}
-					onChange={e => setValue(e.target.value)}
-				></TextField>
-				<Button
-					onClick={sendMessage}
-					fullWidth
-					style={{ width: '10%' }}
-					variant="outlined"
-				>
-					Send
-				</Button>
-			</Grid>
+			<Input value={inputValue} onChange={setInputValue} sendMessage={sendMessage}/>
 		</Container>
 	);
 };
