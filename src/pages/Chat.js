@@ -149,7 +149,7 @@ export const Chat = () => {
 					</List>
 				</div>
 			</Grid>
-			<Input value={inputValue} onChange={setInputValue} sendMessage={sendMessage}/>
+			<Input value={inputValue} setValue={setInputValue} sendMessage={sendMessage}/>
 		</Container>
 	);
 };
