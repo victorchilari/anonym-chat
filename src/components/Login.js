@@ -12,10 +12,8 @@ export const Login = props => {
 	};
 
 	return (
-		<div className="">
 			<Button variant="contained" color="primary" type="submit" onClick={login}>
 				Login
 			</Button>
-		</div>
 	);
 };

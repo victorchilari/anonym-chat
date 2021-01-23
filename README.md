@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Anonym Chat
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Join here [Anonym Chat](https://victorchilari.github.io/anonym-chat/).
 
 ## Available Scripts
 

@@ -64,6 +64,8 @@ export const Chat = () => {
 	const { auth, firestore } = useContext(Context);
 	const [user] = useAuthState(auth);
 	const [value, setValue] = useState('');
+
+	const seconds = new Date().getSeconds();
 	const [messages, loading] = useCollectionData(
 		firestore.collection('messages').orderBy('createDate')
 	);
@@ -91,14 +93,12 @@ export const Chat = () => {
 	useEffect(() => {
 		const chat = document.getElementById('chatsMessages');
 		if (chat) chat.scrollTop = 9999999;
-		console.log(messages);
 	}, [messages]);
 
-	const map = {}; // You could also use an array
-
+	const keyMap = {};
 	const keyPress = e => {
-		map[e.keyCode] = e.type == 'keydown';
-		if (map[17] && map[13]) {
+		keyMap[e.keyCode] = e.type == 'keydown';
+		if (keyMap[17] && keyMap[13]) {
 			sendMessage();
 		}
 	};
