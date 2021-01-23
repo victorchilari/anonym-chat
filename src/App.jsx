@@ -11,7 +11,7 @@ function App() {
 	const [user, loading, error] = useAuthState(auth);
 
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<Navbar />
 			{loading ? <CircularProgress disableShrink /> : <AppRouter />}
 		</BrowserRouter>

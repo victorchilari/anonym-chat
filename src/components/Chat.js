@@ -72,14 +72,19 @@ export const Chat = () => {
 		const reg = new RegExp('\\S');
 		const isJustSpace = !reg.test(value);
 		if (!isJustSpace && value.length > 0) {
-			firestore.collection('messages').add({
-				uid: user.uid,
-				displayName: user.displayName,
-				photoURL: user.photoURL,
-				text: value,
-				createDate: firebase.firestore.FieldValue.serverTimestamp()
-			});
-			setValue('');
+			try {
+				firestore.collection('messages').add({
+					uid: user.uid,
+					displayName: user.displayName,
+					photoURL: user.photoURL,
+					text: value,
+					createDate: firebase.firestore.FieldValue.serverTimestamp()
+				});
+				setValue('');
+			}
+			catch (error) {
+				console.log(error);
+			}
 		}
 	}, [value]);
 
@@ -113,7 +118,7 @@ export const Chat = () => {
 					}}
 				>
 					<List className={classes.messageArea}>
-						{messages[0].createDate.seconds &&
+						{messages[0] &&
 							messages.map(message => (
 								<ListItem key={message.createDate}>
 									<Grid
@@ -137,7 +142,7 @@ export const Chat = () => {
 														color="textPrimary"
 													>
 														{message.createDate &&
-															new Date(message.createDate.seconds)
+															new Date(message.createDate.seconds*1000+message.createDate.nanoseconds/1000000)
 																.toLocaleString()
 																.substring(12, 17)}
 													</Typography>
