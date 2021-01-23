@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/anonym-chat/static/css/main.752aa188.chunk.css",
+    "main.js": "/anonym-chat/static/js/main.5ea12724.chunk.js",
+    "main.js.map": "/anonym-chat/static/js/main.5ea12724.chunk.js.map",
+    "runtime-main.js": "/anonym-chat/static/js/runtime-main.07e7b206.js",
+    "runtime-main.js.map": "/anonym-chat/static/js/runtime-main.07e7b206.js.map",
+    "static/js/2.34377b59.chunk.js": "/anonym-chat/static/js/2.34377b59.chunk.js",
+    "static/js/2.34377b59.chunk.js.map": "/anonym-chat/static/js/2.34377b59.chunk.js.map",
+    "index.html": "/anonym-chat/index.html",
+    "static/css/main.752aa188.chunk.css.map": "/anonym-chat/static/css/main.752aa188.chunk.css.map",
+    "static/js/2.34377b59.chunk.js.LICENSE.txt": "/anonym-chat/static/js/2.34377b59.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.07e7b206.js",
+    "static/js/2.34377b59.chunk.js",
+    "static/css/main.752aa188.chunk.css",
+    "static/js/main.5ea12724.chunk.js"
+  ]
+}
