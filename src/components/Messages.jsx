@@ -20,7 +20,6 @@ const Messages = () => {
 		if (chat) chat.scrollTop = 9999999;
 	}, [messages]);
 
-	if (loading) return <CircularProgress disableShrink />;
 	return (
 		<Grid container justify={'center'} style={{ marginTop: 16 }}>
 			<div
@@ -32,11 +31,15 @@ const Messages = () => {
 					overflowY: 'auto'
 				}}
 			>
-				<List className={classes.messageArea}>
-					{messages.map(message => (
-						<Message myId={user.uid} message={message} />
-					))}
-				</List>
+				{loading ? (
+					<CircularProgress disableShrink />
+				) : (
+					<List className={classes.messagesArea}>
+						{messages.map(message => (
+							<Message myId={user.uid} message={message} />
+						))}
+					</List>
+				)}
 			</div>
 		</Grid>
 	);

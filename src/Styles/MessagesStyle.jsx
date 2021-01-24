@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 
 const MessagesStyle = makeStyles({
-	messageArea: {
+	messagesArea: {
 		height: '50px',
 		overflowY: 'none'
 	},

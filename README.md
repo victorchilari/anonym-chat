@@ -19,6 +19,8 @@ You will also see any lint errors in the console.
 Builds the app for github pages to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
+See here [Anonym Chat](https://victorchilari.github.io/anonym-chat/)
+
 ### `npm build`
 
 Builds the app for production to the `build` folder.\
