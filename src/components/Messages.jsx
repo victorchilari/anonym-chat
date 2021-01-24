@@ -22,7 +22,7 @@ const Messages = () => {
 	// 	messages[messages.length - 1].createDate = { seconds: 0 };
 	// }
 	console.log('render Messages');
-	console.log(messages[messages.length - 1]);
+	// console.log(messages[messages.length - 1]);
 	const toBottom = () => {
 		const chat = document.getElementById('chatsMessages');
 		if (chat) chat.scrollTop = 9999999;
