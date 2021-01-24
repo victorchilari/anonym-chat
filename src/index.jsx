@@ -17,8 +17,8 @@ export const Context = createContext(null);
 ReactDOM.render(
 	<Context.Provider
 		value={{
-			firebase,
 			auth,
+			firebase,
 			firestore
 		}}
 	>

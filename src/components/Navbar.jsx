@@ -4,12 +4,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Switch from '@material-ui/core/Switch';
 import { Context } from '../index';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Login } from './Login';
 
-const Navbar = () => {
-	const { auth } = useContext(Context);
+const Navbar = props => {
+	const { auth, darkState, handleThemeChange } = useContext(Context);
 	const [user] = useAuthState(auth);
 	return (
 		<AppBar color={'default'} position="static">
@@ -18,6 +19,7 @@ const Navbar = () => {
 					<Typography variant="h6" color="inherit">
 						Anonym Chat
 					</Typography>
+					<Switch checked={darkState} onChange={handleThemeChange} />
 					{user ? (
 						<Button
 							variant="outlined"
