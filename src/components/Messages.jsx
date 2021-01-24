@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles, Grid, List } from '@material-ui/core';
 import Message from './Message';
+import MessagesStyle from '../Styles/MessagesStyle';
 
 const useStyles = makeStyles({
 	messageArea: {
@@ -9,7 +10,7 @@ const useStyles = makeStyles({
 	}
 });
 const Messages = props => {
-	const classes = useStyles();
+	const classes = MessagesStyle();
 	const { messages, uid } = props;
 
 	return (

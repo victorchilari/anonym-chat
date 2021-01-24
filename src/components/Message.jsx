@@ -1,40 +1,9 @@
 import React from 'react';
-import {
-	makeStyles,
-	Grid,
-	ListItem,
-	ListItemText,
-	Typography
-} from '@material-ui/core';
-
-const useStyles = makeStyles({
-	inline: {
-		display: 'inline',
-		maxWidth: '600px'
-		// flexWrap: 'wrap-reverse'
-		// flexDirection: 'column-reverse'
-	},
-	notmyMessage: {
-		maxWidth: '600px',
-		wordWrap: 'break-word',
-		'& *': {
-			display: 'flex',
-			backgroundColor: 'red'
-		}
-	},
-	myMessage: {
-		maxWidth: '600px',
-		wordWrap: 'break-word',
-		'& *': {
-			display: 'flex',
-			flexDirection: 'row-reverse',
-			backgroundColor: 'green'
-		}
-	}
-});
+import { Grid, ListItem, ListItemText, Typography } from '@material-ui/core';
+import MessagesStyle from '../Styles/MessagesStyle';
 
 export const Time = props => {
-	const classes = useStyles();
+	const classes = MessagesStyle();
 
 	const { time } = props;
 	return (
@@ -51,7 +20,7 @@ export const Time = props => {
 };
 
 export const Context = props => {
-	const classes = useStyles();
+	const classes = MessagesStyle();
 
 	const { itsMe, text, time } = props;
 	return (
@@ -68,7 +37,7 @@ export const Context = props => {
 };
 
 const Message = props => {
-	const classes = useStyles();
+	const classes = MessagesStyle();
 
 	const { message, myId } = props;
 	const time = new Date(
