@@ -8,7 +8,7 @@ export const Time = props => {
 	const { time } = props;
 	return (
 		<Typography
-			multiline
+			multiline="true"
 			component="span"
 			variant="body2"
 			className={classes.inline}

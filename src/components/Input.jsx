@@ -37,21 +37,41 @@ const Input = () => {
 			<TextField
 				defaultValue=""
 				fullWidth
-				onKeyDown={keyPress}
+				// onKeyDown={keyPress}
 				onKeyUp={keyPress}
-				multiline
+				multiline="true"
 				variant="outlined"
-				style={{ width: '90%' }}
+				style={{ width: '80%' }}
 				value={inputValue}
 				onChange={e => setInputValue(e.target.value)}
 			></TextField>
 			<Button
 				onClick={sendMessage}
+				color="primary"
 				fullWidth
 				style={{ width: '10%' }}
 				variant="outlined"
 			>
 				Send
+			</Button>
+			<Button
+				onClick={() => {
+					firestore
+						.collection('messages')
+						.get()
+						.then(res => {
+							res.forEach(element => {
+								element.ref.delete();
+							});
+						});
+				}}
+				type="button"
+				color="secondary"
+				fullWidth
+				style={{ width: '10%' }}
+				variant="outlined"
+			>
+				Erase
 			</Button>
 		</Grid>
 	);

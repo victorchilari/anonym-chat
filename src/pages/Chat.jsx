@@ -6,7 +6,6 @@ import ChatStyle from '../Styles/ChatStyle';
 
 export const Chat = () => {
 	ChatStyle();
-
 	return (
 		<Container>
 			<Messages />
