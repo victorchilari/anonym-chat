@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/anonym-chat/static/css/main.752aa188.chunk.css",
-    "main.js": "/anonym-chat/static/js/main.fbd75a64.chunk.js",
-    "main.js.map": "/anonym-chat/static/js/main.fbd75a64.chunk.js.map",
+    "main.js": "/anonym-chat/static/js/main.11098bfa.chunk.js",
+    "main.js.map": "/anonym-chat/static/js/main.11098bfa.chunk.js.map",
     "runtime-main.js": "/anonym-chat/static/js/runtime-main.07e7b206.js",
     "runtime-main.js.map": "/anonym-chat/static/js/runtime-main.07e7b206.js.map",
-    "static/js/2.5ef25ee0.chunk.js": "/anonym-chat/static/js/2.5ef25ee0.chunk.js",
-    "static/js/2.5ef25ee0.chunk.js.map": "/anonym-chat/static/js/2.5ef25ee0.chunk.js.map",
+    "static/js/2.7b68eda3.chunk.js": "/anonym-chat/static/js/2.7b68eda3.chunk.js",
+    "static/js/2.7b68eda3.chunk.js.map": "/anonym-chat/static/js/2.7b68eda3.chunk.js.map",
     "index.html": "/anonym-chat/index.html",
     "static/css/main.752aa188.chunk.css.map": "/anonym-chat/static/css/main.752aa188.chunk.css.map",
-    "static/js/2.5ef25ee0.chunk.js.LICENSE.txt": "/anonym-chat/static/js/2.5ef25ee0.chunk.js.LICENSE.txt"
+    "static/js/2.7b68eda3.chunk.js.LICENSE.txt": "/anonym-chat/static/js/2.7b68eda3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.07e7b206.js",
-    "static/js/2.5ef25ee0.chunk.js",
+    "static/js/2.7b68eda3.chunk.js",
     "static/css/main.752aa188.chunk.css",
-    "static/js/main.fbd75a64.chunk.js"
+    "static/js/main.11098bfa.chunk.js"
   ]
 }
