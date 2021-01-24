@@ -2,6 +2,12 @@
 
 Join here [Anonym Chat](https://victorchilari.github.io/anonym-chat/).
 
+#### Need to impliment:
+
+- [ ] Dark Theme
+- [ ] Impruve message's style
+- [ ] Add report of user by message
+
 ## Available Scripts
 
 In the project directory, you can run:
