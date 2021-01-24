@@ -1,18 +1,26 @@
-import React from 'react';
-import { makeStyles, Grid, List } from '@material-ui/core';
+import React, { useContext, useEffect } from 'react';
+import { CircularProgress, Grid, List } from '@material-ui/core';
 import Message from './Message';
 import MessagesStyle from '../Styles/MessagesStyle';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { Context } from '..';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
-const useStyles = makeStyles({
-	messageArea: {
-		height: '50px',
-		overflowY: 'none'
-	}
-});
-const Messages = props => {
+const Messages = () => {
+	console.log('render Messages');
 	const classes = MessagesStyle();
-	const { messages, uid } = props;
+	const { auth, firestore } = useContext(Context);
+	const [user] = useAuthState(auth);
+	const [messages, loading] = useCollectionData(
+		firestore.collection('messages').orderBy('createDate')
+	);
 
+	useEffect(() => {
+		const chat = document.getElementById('chatsMessages');
+		if (chat) chat.scrollTop = 9999999;
+	}, [messages]);
+
+	if (loading) return <CircularProgress disableShrink />;
 	return (
 		<Grid container justify={'center'} style={{ marginTop: 16 }}>
 			<div
@@ -25,8 +33,9 @@ const Messages = props => {
 				}}
 			>
 				<List className={classes.messageArea}>
-					{messages[0] &&
-						messages.map(message => <Message myId={uid} message={message} />)}
+					{messages.map(message => (
+						<Message myId={user.uid} message={message} />
+					))}
 				</List>
 			</div>
 		</Grid>

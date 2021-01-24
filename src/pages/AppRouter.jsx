@@ -15,7 +15,7 @@ const AppRouter = () => {
 		: publicRoutes.map(({ path, Component }) => (
 				<Route key={path} path={path} component={Component} exact={true} />
 		  ));
-	console.log(routes);
+
 	return (
 		<Switch>
 			{routes}
