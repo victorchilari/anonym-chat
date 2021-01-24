@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, Grid, List } from '@material-ui/core';
-import Message from '../components/Message';
+import Message from './Message';
 
 const useStyles = makeStyles({
 	messageArea: {
