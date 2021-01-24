@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/anonym-chat/static/css/main.752aa188.chunk.css",
-    "main.js": "/anonym-chat/static/js/main.11098bfa.chunk.js",
-    "main.js.map": "/anonym-chat/static/js/main.11098bfa.chunk.js.map",
+    "main.js": "/anonym-chat/static/js/main.2d9eca93.chunk.js",
+    "main.js.map": "/anonym-chat/static/js/main.2d9eca93.chunk.js.map",
     "runtime-main.js": "/anonym-chat/static/js/runtime-main.07e7b206.js",
     "runtime-main.js.map": "/anonym-chat/static/js/runtime-main.07e7b206.js.map",
     "static/js/2.7b68eda3.chunk.js": "/anonym-chat/static/js/2.7b68eda3.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.07e7b206.js",
     "static/js/2.7b68eda3.chunk.js",
     "static/css/main.752aa188.chunk.css",
-    "static/js/main.11098bfa.chunk.js"
+    "static/js/main.2d9eca93.chunk.js"
   ]
 }
