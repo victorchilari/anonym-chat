@@ -38,7 +38,6 @@ export const Context = props => {
 
 const Message = props => {
 	const classes = MessagesStyle();
-
 	const { message, myId } = props;
 	const time = new Date(
 		message.createDate &&

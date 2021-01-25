@@ -20,17 +20,18 @@ const deleteMessages = (e = 0) => {
 		.get()
 		.then(res => {
 			index = 0;
-			res.forEach(element => {
-				// console.log(element, index);
-				// e = e - 1;
-				// index > howMuch
-				// howMuch.includes(index) && e < 3 && e > 0 &&
-				index = index + 1;
-				console.log(howMuch.includes(index), howMuch, index, element.ref);
-				const res = async () => await element.ref.delete();
-				howMuch.includes(index) && res();
-				// index = 0;
-			});
+			res[0] && res[0].ref.delete();
+			// res.forEach(element => {
+			// 	// console.log(element, index);
+			// 	// e = e - 1;
+			// 	// index > howMuch
+			// 	// howMuch.includes(index) && e < 3 && e > 0 &&
+			// 	index = index + 1;
+			// 	console.log(howMuch.includes(index), howMuch, index, element.ref);
+			// 	const res = async () => await element.ref.delete();
+			// 	howMuch.includes(index) && res();
+			// 	// index = 0;
+			// });
 		});
 };
 

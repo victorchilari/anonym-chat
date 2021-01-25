@@ -5,6 +5,8 @@ import { Context } from '..';
 import firebase from 'firebase';
 
 const Input = () => {
+	// const [resData, setResData] = useState('');
+
 	const { auth, firestore } = useContext(Context);
 	const [user] = useAuthState(auth);
 
@@ -55,15 +57,33 @@ const Input = () => {
 				Send
 			</Button>
 			<Button
-				onClick={() => {
-					firestore
-						.collection('messages')
-						.get()
-						.then(res => {
-							res.forEach(element => {
-								element.ref.delete();
-							});
-						});
+				onClick={async () => {
+					let del = 4;
+					const firestore1 = await firestore.collection('messages');
+					const take = await firestore1.get();
+					take.forEach(element => {
+						console.log('res', element);
+						// const str = JSON.stringify(element.ref.firestore._.id);
+						// const str2 = resData.concat(str);
+						// setResData(element.ref.firestore._.id);
+						// setResData(str2);
+						// console.log('data', resData);
+						console.log('id', element.id);
+						const pseudoID = element.id;
+						element != undefined &&
+							pseudoID &&
+							element.id === pseudoID &&
+							element.ref.delete();
+						del = del - 1;
+						for (let index = 0; index < 60000000; index++) {
+							const a = index;
+						}
+					});
+					// .then(res => {
+					// 		res.forEach(element => {
+					// 			element.ref.delete();
+					// 		});
+					// 	});
 				}}
 				type="button"
 				color="secondary"
