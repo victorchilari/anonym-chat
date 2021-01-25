@@ -2,8 +2,15 @@
 
 Join here [Anonym Chat](https://victorchilari.github.io/anonym-chat/).
 
-#### Need to impliment:
+#### To develop:
 
+<div>
+<input type="checkbox" checked="checked"> In progres
+<input type="checkbox"> Need to impliment
+</div>
+#####
+
+- [x] Auto clear N-5 messages after N messages
 - [ ] Add report of user by message
 - [ ] Dark Theme
 - [ ] Impruve message's style
