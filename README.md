@@ -5,10 +5,15 @@ Join here [Anonym Chat](https://victorchilari.github.io/anonym-chat/).
 #### To develop:
 
 <div>
-<input type="checkbox" checked="checked"> In progres
-<input type="checkbox"> Need to impliment
+<label class="container">In progres
+  <input type="checkbox" checked="checked">
+  <span class="checkmark"></span>
+</label>
+<label class="container">Need to impliment
+  <input type="checkbox">
+  <span class="checkmark"></span>
+</label>
 </div>
-#####
 
 - [x] Auto clear N-5 messages after N messages
 - [ ] Impruve rerender of messages
