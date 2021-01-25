@@ -13,23 +13,25 @@ const auth = firebase.auth();
 const firestore = firebase.firestore();
 
 const deleteMessages = (e = 0) => {
-	const howMuch = [4, 5, 6];
+	const howMuch = [5];
 	let index = 0;
 	firestore
 		.collection('messages')
 		.get()
 		.then(res => {
-			console.log(res);
+			index = 0;
 			res.forEach(element => {
-				console.log(element, index);
+				// console.log(element, index);
 				// e = e - 1;
 				// index > howMuch
-				index++;
 				// howMuch.includes(index) && e < 3 && e > 0 &&
-				howMuch.includes(index) && element.ref.delete();
+				index = index + 1;
+				console.log(howMuch.includes(index), howMuch, index, element.ref);
+				const res = async () => await element.ref.delete();
+				howMuch.includes(index) && res();
+				// index = 0;
 			});
 		});
-	// .then((index = 0));
 };
 
 export const Context = createContext(null);
