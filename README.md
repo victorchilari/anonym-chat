@@ -6,7 +6,7 @@ Join here [Anonym Chat](https://victorchilari.github.io/anonym-chat/).
 
 ##### In progres
 
-- [x] Auto clear N-5 messages after N messages
+- [ ] Auto clear N-5 messages after N messages
 
 ##### Need to impliment
 
