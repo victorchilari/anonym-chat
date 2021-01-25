@@ -10,12 +10,25 @@ const Messages = () => {
 	const [value, setValue] = useState([
 		{ text: '', createDate: { seconds: 1 } }
 	]);
+	const [needToDelete, setNeedToDelete] = useState(true);
 	const classes = MessagesStyle();
-	const { auth, firestore } = useContext(Context);
+	const { auth, firestore, deleteMessages } = useContext(Context);
 	const [user] = useAuthState(auth);
 	let [messages, loading] = useCollectionData(
 		firestore.collection('messages').orderBy('createDate')
 	);
+	if (messages && messages.length > 5 && needToDelete) {
+		deleteMessages();
+		setNeedToDelete(false);
+	}
+	useEffect(() => {
+		messages && messages.length > 5 && setValue(messages);
+	}, [messages]);
+
+	useEffect(() => {
+		messages && messages.length > 5 && setNeedToDelete(true);
+	}, [value]);
+
 	// if (messages === undefined || messages.length == 0) {
 	// 	messages = [{ createDate: { seconds: 0 } }];
 	// } else if (messages[messages.length - 1].createDate === null) {
@@ -51,22 +64,23 @@ const Messages = () => {
 	// 	// setValue(messages);
 	// 	toBottom();
 	// }
-	useEffect(() => {
-		// if (
-		// 	messages != undefined &&
-		// 	messages[messages.length - 1].createDate.seconds !=
-		// 		value[value.length - 1].createDate.seconds &&
-		// 	messages[messages.length - 1].text === value[value.length - 1].text
-		// ) {
-		// 	setValue(messages);
-		// }
-		// messages == undefined && messages.push([{ nanoseconds: 1 }]);
-		console.log('effect');
-		toBottom();
-	}, [
-		value[value.length - 1].createDate.seconds,
-		value[value.length - 1].createDate.nanoseconds
-	]);
+
+	// useEffect(() => {
+	// 	// if (
+	// 	// 	messages != undefined &&
+	// 	// 	messages[messages.length - 1].createDate.seconds !=
+	// 	// 		value[value.length - 1].createDate.seconds &&
+	// 	// 	messages[messages.length - 1].text === value[value.length - 1].text
+	// 	// ) {
+	// 	// 	setValue(messages);
+	// 	// }
+	// 	// messages == undefined && messages.push([{ nanoseconds: 1 }]);
+	// 	console.log('effect');
+	// 	toBottom();
+	// }, [
+	// 	value[value.length - 1].createDate.seconds,
+	// 	value[value.length - 1].createDate.nanoseconds
+	// ]);
 
 	return (
 		<Grid container justify={'center'} style={{ marginTop: 16 }}>
