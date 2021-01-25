@@ -4,18 +4,12 @@ Join here [Anonym Chat](https://victorchilari.github.io/anonym-chat/).
 
 #### To develop:
 
-<div>
-<label class="container">In progres
-  <input type="checkbox" checked="checked">
-  <span class="checkmark"></span>
-</label>
-<label class="container">Need to impliment
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
-</div>
+##### In progres
 
 - [x] Auto clear N-5 messages after N messages
+
+##### Need to impliment
+
 - [ ] Impruve rerender of messages
 - [ ] Impruve rerender of Messages like component
 - [ ] Add report of user by message
