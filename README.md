@@ -2,19 +2,26 @@
 
 Join here [Anonym Chat](https://victorchilari.github.io/anonym-chat/).
 
-#### To develop:
+### To develop:
 
-##### In progres
+#### In progres
 
 - [ ] Auto clear N-5 messages after N messages
 
-##### Need to impliment
+#### Need to impliment
 
 - [ ] Impruve rerender of messages
 - [ ] Impruve rerender of Messages like component
 - [ ] Add report of user by message
 - [ ] Dark Theme
 - [ ] Impruve message's style
+
+#### About opyimization!!!
+
+##### Impruve rerender of messages
+
+Messages' logic of show is wrong. Now, there is a map which rerender messages every time when the array of it is changed on DB.
+Need to change map, to push! It will improve performance, also UX, users will not lose all messages when somebody will creal DB, it will be just when will refrash page.
 
 ## Available Scripts
 
